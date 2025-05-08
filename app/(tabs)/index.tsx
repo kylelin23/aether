@@ -10,8 +10,12 @@ export default function HomeScreen() {
         style = {styles.gradient}
       >
         <Text style = {styles.homePageText}>
-          Home screen
+          welcome to aether
         </Text>
+        <Text style = {styles.subText}>
+          launch your budget, orbit your goals
+        </Text>
+
       </LinearGradient>
     </View>
   );
@@ -29,7 +33,14 @@ const styles = StyleSheet.create({
   },
 
   homePageText: {
-    color: 'white'
+    color: 'white',
+    fontSize: 45,
+    marginBottom: 20,
+  },
+
+  subText: {
+    color: 'white',
+    fontSize: 20
   },
 
 });
