@@ -1,20 +1,35 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Button } from '@react-navigation/elements';
 
 
 export default function HomeScreen() {
   return (
-    <View style={styles.mainText}>
+    <View style={styles.main_text}>
       <LinearGradient
         colors = {['rgb(91, 73, 173)', 'rgb(45, 36, 87)']}
         style = {styles.gradient}
       >
-        <Text style = {styles.homePageText}>
+        <Text style = {styles.home_page_text}>
           welcome to aether
         </Text>
-        <Text style = {styles.subText}>
+        <Text style = {styles.sub_text}>
           launch your budget, orbit your goals
         </Text>
+        <View style = {styles.button_container}>
+          <TouchableOpacity
+          onPress = {() => alert('Going to log in page')}
+          style = {styles.log_in_button}
+          >
+            <Text>Log In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress = {() => alert('Going to sign up page')}
+          style = {styles.sign_up_button}
+          >
+            <Text>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
 
       </LinearGradient>
     </View>
@@ -22,7 +37,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  mainText:{
+  main_text:{
     flex: 1
   },
 
@@ -32,15 +47,37 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  homePageText: {
+  home_page_text: {
     color: 'white',
-    fontSize: 45,
+    fontSize: 50,
     marginBottom: 20,
   },
 
-  subText: {
+  sub_text: {
     color: 'white',
-    fontSize: 20
+    fontSize: 25,
+    marginBottom: 20,
+  },
+
+  log_in_button: {
+    marginBottom: 20,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    paddingVertical: 15,
+    width: 250,
+    borderRadius: 15
+  },
+
+  sign_up_button: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    paddingVertical: 15,
+    width: 250,
+    borderRadius: 15
+  },
+
+  button_container: {
+
   },
 
 });
