@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import HomeScreen from './(tabs)';
+import Navigator from './routes/startingStack';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -20,7 +21,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <HomeScreen></HomeScreen>
+      <Navigator></Navigator>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
