@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import HomeScreen from './(tabs)';
+import Navigator from './routes/startingStack';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
