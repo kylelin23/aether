@@ -1,6 +1,5 @@
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Button } from '@react-navigation/elements';
 
 
 export default function HomeScreen() {
