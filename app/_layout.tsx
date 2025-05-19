@@ -21,7 +21,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <HomeScreen></HomeScreen>
+      <Navigator></Navigator>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
