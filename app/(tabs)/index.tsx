@@ -1,9 +1,17 @@
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Button } from '@react-navigation/elements';
 
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}: {navigation: any}) {
+
+  const logInButton = () => {
+    navigation.navigate('Log In');
+  }
+
+  const signUpButton = () => {
+    navigation.navigate('Sign Up');
+  }
+
   return (
     <View style={styles.main_text}>
       <LinearGradient
@@ -18,13 +26,13 @@ export default function HomeScreen() {
         </Text>
         <View style = {styles.button_container}>
           <TouchableOpacity
-          onPress = {() => alert('Going to log in page')}
+          onPress = {logInButton}
           style = {styles.log_in_button}
           >
             <Text>Log In</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress = {() => alert('Going to sign up page')}
+          onPress = {signUpButton}
           style = {styles.sign_up_button}
           >
             <Text>Sign Up</Text>
