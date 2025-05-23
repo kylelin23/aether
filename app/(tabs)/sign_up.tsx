@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 export default function LogIn(){
     return(
         <View>
-            <Text>Log In Page</Text>
+            <Text>Sign Up Page</Text>
         </View>
     )
 }

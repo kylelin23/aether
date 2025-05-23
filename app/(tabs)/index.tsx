@@ -5,7 +5,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function HomeScreen({navigation}: {navigation: any}) {
 
   const logInButton = () => {
-    navigation.navigate('LogInPage');
+    navigation.navigate('Log In');
+  }
+
+  const signUpButton = () => {
+    navigation.navigate('Sign Up');
   }
 
   return (
@@ -28,7 +32,7 @@ export default function HomeScreen({navigation}: {navigation: any}) {
             <Text>Log In</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress = {() => alert('Going to sign up page')}
+          onPress = {signUpButton}
           style = {styles.sign_up_button}
           >
             <Text>Sign Up</Text>
