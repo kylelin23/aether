@@ -11,10 +11,10 @@ export default function HomeScreen() {
         style = {styles.gradient}
       >
         <Text style = {styles.home_page_text}>
-          welcome to aether
+          WELCOME TO AETHER
         </Text>
         <Text style = {styles.sub_text}>
-          launch your budget, orbit your goals
+          LAUNCH YOUR BUDGET, ORBIT YOUR GOALS
         </Text>
         <View style = {styles.button_container}>
           <TouchableOpacity
@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
 
   home_page_text: {
     color: 'white',
-    fontSize: 50,
-    marginBottom: 20,
+    fontSize: 40,
+    marginBottom: 25,
   },
 
   sub_text: {
     color: 'white',
-    fontSize: 25,
-    marginBottom: 20,
+    fontSize: 20,
+    marginBottom: 25,
   },
 
   log_in_button: {
