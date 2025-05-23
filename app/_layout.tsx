@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import Navigator from './routes/logInStack';
+import Navigator from './routes/startingStack';
 
 
 export default function RootLayout() {
