@@ -19,10 +19,10 @@ export default function HomeScreen({navigation}: {navigation: any}) {
         style = {styles.gradient}
       >
         <Text style = {styles.home_page_text}>
-          WELCOME TO AETHER
+          Welcome to Aether
         </Text>
         <Text style = {styles.sub_text}>
-          LAUNCH YOUR BUDGET, ORBIT YOUR GOALS
+          Launch Your Budget, Orbit Your Goals
         </Text>
         <View style = {styles.button_container}>
           <TouchableOpacity
