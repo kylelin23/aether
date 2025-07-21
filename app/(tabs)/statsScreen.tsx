@@ -11,7 +11,9 @@ export default function StatsScreen() {
   return (
     <View>
       <View style={styles.container}>
-        <Button title="Overview" onPress={() => setSelectedTab("overview")} />
+        <Button
+            title="Overview"
+            onPress={() => setSelectedTab("overview")} />
         <Button
           title="Categories"
           onPress={() => setSelectedTab("categories")}
