@@ -7,7 +7,7 @@ export default function LogIn({navigation}: {navigation: any}){
 
     return(
         <View>
-            <Text>Log In Page</Text>
+            <Text>Welcome Back</Text>
             <TouchableOpacity
             onPress = {logInButton}
             >

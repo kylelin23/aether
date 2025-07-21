@@ -7,7 +7,7 @@ export default function SignUp({navigation}: {navigation: any}){
 
     return(
         <View>
-            <Text>Sign Up Page</Text>
+            <Text>New Traveler</Text>
             <TouchableOpacity
             onPress = {startBudgetingButton}
             >
