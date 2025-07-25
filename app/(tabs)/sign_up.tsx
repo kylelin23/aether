@@ -2,11 +2,11 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function SignUp({navigation}: {navigation: any}){
     const startBudgetingButton = () => {
-        navigation.navigate('Stats Screen');
+        navigation.navigate('Home Page');
     }
 
     return(
-        <View>
+        <View style = {styles.view}>
             <Text>New Traveler</Text>
             <TouchableOpacity
             onPress = {startBudgetingButton}
@@ -18,5 +18,9 @@ export default function SignUp({navigation}: {navigation: any}){
 }
 
 const styles = StyleSheet.create({
-
+    view: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
+    }
 });

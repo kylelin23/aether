@@ -2,11 +2,11 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function LogIn({navigation}: {navigation: any}){
     const logInButton = () => {
-        navigation.navigate('Stats Screen');
+        navigation.navigate('Home Page');
     }
 
     return(
-        <View>
+        <View style = {styles.view}>
             <Text>Welcome Back</Text>
             <TouchableOpacity
             onPress = {logInButton}
@@ -18,5 +18,9 @@ export default function LogIn({navigation}: {navigation: any}){
 }
 
 const styles = StyleSheet.create({
-
+    view: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+    }
 });

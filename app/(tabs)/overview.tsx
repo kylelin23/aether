@@ -1,10 +1,12 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Button, View, StyleSheet } from 'react-native';
 
 export default function OverviewScreen(){
 
     return(
         <View>
-            <Text>overview screen</Text>
+            <Button
+                title = 'Edit Budget Goal'
+            />
         </View>
     )
 }

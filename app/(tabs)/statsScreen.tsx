@@ -3,13 +3,14 @@ import OverviewScreen from "./overview";
 import CategoriesScreen from "./categories";
 import { useState } from "react";
 
+
 export default function StatsScreen() {
   const [selectedTab, setSelectedTab] = useState<"overview" | "categories">(
     "overview"
   );
 
   return (
-    <View>
+    <View style = {{flex: 1}}>
       <View style={styles.container}>
         <Button
             title="Overview"

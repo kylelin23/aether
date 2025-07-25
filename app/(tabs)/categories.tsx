@@ -1,10 +1,12 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, Button, View, StyleSheet } from 'react-native';
 
 export default function CategoriesScreen(){
 
     return(
         <View>
-            <Text>category screen</Text>
+            <Button
+                title = 'Add Category'
+            />
         </View>
     )
 }
