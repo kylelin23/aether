@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 15,
     width: 250,
-    borderRadius: 15
+    borderRadius: 15,
+    shadowOffset: { width: 0, height: 7 },
+    shadowOpacity: 0.3,
   },
 
   sign_up_button: {
@@ -81,7 +83,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 15,
     width: 250,
-    borderRadius: 15
+    borderRadius: 15,
+    shadowOffset: { width: 0, height: 7 },
+    shadowOpacity: 0.3,
   },
 
   button_container: {
