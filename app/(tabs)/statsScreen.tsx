@@ -1,4 +1,5 @@
 import { Text, View, StyleSheet, Dimensions, Button } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
 import OverviewScreen from "./overview";
 import CategoriesScreen from "./categories";
 import { useState } from "react";
@@ -11,17 +12,28 @@ export default function StatsScreen() {
 
   return (
     <View style = {{flex: 1}}>
-      <View style={styles.container}>
-        <Button
-            title="Overview"
-            onPress={() => setSelectedTab("overview")} />
-        <Button
-          title="Categories"
-          onPress={() => setSelectedTab("categories")}
-        />
-      </View>
-      <View>
-        {selectedTab === "overview" ? <OverviewScreen /> : <CategoriesScreen />}
+      <LinearGradient
+        colors = {['rgb(91, 73, 173)', 'rgb(45, 36, 87)']}
+        style = {styles.topHalf}
+      >
+        <View style={styles.container}>
+          <Button
+              title="Overview"
+              color = 'white'
+              onPress={() => setSelectedTab("overview")} />
+          <Button
+            title="Categories"
+            color="white"
+            onPress={() => setSelectedTab("categories")}
+          />
+        </View>
+        <View>
+          {selectedTab === "overview" ? <OverviewScreen /> : <CategoriesScreen />}
+        </View>
+      </LinearGradient>
+
+      <View style = {styles.bottomHalf}>
+
       </View>
     </View>
   );
@@ -34,5 +46,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: screenWidth,
     justifyContent: "space-around",
+  },
+
+  topHalf: {
+    height: "50%",
+  },
+
+  bottomHalf: {
+    height: "50%",
+    backgroundColor: "black",
   },
 });
