@@ -12,8 +12,10 @@ export default function TabNavigator() {
     <Tab.Navigator initialRouteName="Stats"
     screenOptions = {{
         tabBarStyle: {
-            backgroundColor: 'black', 
-        }
+            backgroundColor: 'black',
+        },
+        tabBarActiveTintColor: 'rgb(91, 73, 173)',
+        tabBarInactiveTintColor: 'white',
     }}
     >
       <Tab.Screen name="Wallet" component={WalletScreen} />

@@ -11,7 +11,7 @@ export default function StatsScreen() {
   );
 
   return (
-    <View style = {{flex: 1}}>
+    <View style = {{flex: 1, backgroundColor: 'black'}}>
       <LinearGradient
         colors = {['rgb(91, 73, 173)', 'rgb(45, 36, 87)']}
         style = {styles.topHalf}
@@ -27,13 +27,13 @@ export default function StatsScreen() {
             onPress={() => setSelectedTab("categories")}
           />
         </View>
-        <View>
-          {selectedTab === "overview" ? <OverviewScreen /> : <CategoriesScreen />}
-        </View>
+
       </LinearGradient>
 
       <View style = {styles.bottomHalf}>
-
+        <View>
+          {selectedTab === "overview" ? <OverviewScreen /> : <CategoriesScreen />}
+        </View>
       </View>
     </View>
   );
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
 
   topHalf: {
     height: "50%",
+    borderRadius: 25,
   },
 
   bottomHalf: {
