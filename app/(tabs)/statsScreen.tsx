@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Dimensions, Button } from "react-native";
+import { View, StyleSheet, Dimensions, Button } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import OverviewScreen from "./overview";
 import CategoriesScreen from "./categories";
