@@ -1,13 +1,18 @@
 import { View, StyleSheet, Dimensions, Button } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import OverviewScreen from "./overview";
-import CategoriesScreen from "./categories";
+import OverviewBottomScreen from "./overviewBottom";
+import CategoriesBottomScreen from "./categoriesBottom";
+import OverviewUpperScreen from "./overviewUpper";
+import CategoriesUpperScreen from "./categoriesUpper";
 import { useState } from "react";
 
 
 export default function StatsScreen() {
-  const [selectedTab, setSelectedTab] = useState<"overview" | "categories">(
-    "overview"
+  const [selectedTab, setSelectedTab] = useState<"overviewBottom" | "categoriesBottom">(
+    "overviewBottom"
+  );
+  const [selectedTab2, setSelectedTab2] = useState<"overviewUpper" | "categoriesUpper">(
+    "overviewUpper"
   );
 
   return (
@@ -20,19 +25,28 @@ export default function StatsScreen() {
           <Button
               title="Overview"
               color = 'white'
-              onPress={() => setSelectedTab("overview")} />
+              onPress={() => {
+                  setSelectedTab("overviewBottom")
+                  setSelectedTab2("overviewUpper")
+                }
+              } />
           <Button
             title="Categories"
             color="white"
-            onPress={() => setSelectedTab("categories")}
+            onPress={() => {
+              setSelectedTab("categoriesBottom");
+              setSelectedTab2("categoriesUpper");
+            }}
           />
         </View>
-
+        <View>
+          {selectedTab2 === "overviewUpper" ? (<OverviewUpperScreen />) : (<CategoriesUpperScreen />)}
+        </View>
       </LinearGradient>
 
-      <View style = {styles.bottomHalf}>
+      <View style={styles.bottomHalf}>
         <View>
-          {selectedTab === "overview" ? <OverviewScreen /> : <CategoriesScreen />}
+          {selectedTab === "overviewBottom" ? (<OverviewBottomScreen />) : (<CategoriesBottomScreen />)}
         </View>
       </View>
     </View>

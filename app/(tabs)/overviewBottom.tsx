@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Dimensions, TouchableOpacity, Text, TextInput, View, StyleSheet, Modal } from 'react-native';
 
-export default function OverviewScreen(){
+export default function OverviewBottomScreen(){
 
     const [visible, setVisible] = useState(false);
 
@@ -97,5 +97,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'white',
         margin: 22,
+        color: 'white',
     },
 });
