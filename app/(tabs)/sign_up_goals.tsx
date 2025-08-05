@@ -7,7 +7,7 @@ export default function SignUpGoals({ navigation }: { navigation: any }) {
   const [selectedValue, setSelectedValue] = useState("Personal Finance");
 
   const startBudgetingButton = () => {
-    navigation.navigate("Home Page");
+    navigation.navigate("All Done");
   };
 
   return (
@@ -15,7 +15,7 @@ export default function SignUpGoals({ navigation }: { navigation: any }) {
       colors={["rgb(91, 73, 173)", "rgb(45, 36, 87)"]}
       style={styles.view}
     >
-      <Text style={styles.text}>What Would You Like To Accomplish With This App? </Text>
+      <Text style={styles.text}>What Would You Like To Accomplish With This App? (Select the most appropriate option)</Text>
 
       <View style={{ alignItems: "center" }}>
         <Picker
@@ -35,7 +35,7 @@ export default function SignUpGoals({ navigation }: { navigation: any }) {
         </Picker>
 
         <TouchableOpacity onPress={startBudgetingButton} style={styles.button}>
-          <Text style={styles.startBudgetingText}>Start Budgeting</Text>
+          <Text style={styles.startBudgetingText}>Next</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
