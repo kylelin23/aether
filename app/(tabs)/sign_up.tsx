@@ -4,7 +4,7 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-nativ
 
 export default function SignUp({navigation}: {navigation: any}){
     const startBudgetingButton = () => {
-        navigation.navigate('Home Page');
+        navigation.navigate('Sign Up 2');
     }
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -55,7 +55,7 @@ export default function SignUp({navigation}: {navigation: any}){
                 onPress = {startBudgetingButton}
                 style = {styles.button}
             >
-                <Text style = {styles.startBudgetingText}>Start Budgeting</Text>
+                <Text style = {styles.startBudgetingText}>Next</Text>
             </TouchableOpacity>
         </View>
       </LinearGradient>
