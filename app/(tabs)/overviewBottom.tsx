@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Dimensions, TouchableOpacity, Text, TextInput, View, StyleSheet, Modal } from 'react-native';
+import { subscribeForKeyboardEvents } from 'react-native-reanimated/lib/typescript/core';
 
 export default function OverviewBottomScreen(){
 
@@ -9,8 +10,25 @@ export default function OverviewBottomScreen(){
         setVisible(!visible);
     }
 
+
     return(
         <View style = {styles.view}>
+            <View style = {styles.container}>
+                <Text style = {styles.text}>FOOD</Text>
+                <Text style = {styles.text}>$100</Text>
+            </View>
+
+            <View style = {styles.container}>
+                <Text style = {styles.text}>RENT</Text>
+                <Text style = {styles.text}>$500</Text>
+            </View>
+
+            <View style = {styles.container}>
+                <Text style = {styles.text}>TRANSPORT</Text>
+                <Text style = {styles.text}>$50</Text>
+            </View>
+
+
             <TouchableOpacity
                 style = {styles.button}
                 onPress = {editBudgetButton}
@@ -83,6 +101,11 @@ const styles = StyleSheet.create({
         fontSize : 30,
     },
 
+    text: {
+        color: 'white',
+        fontSize: 25,
+    },
+
     enterContainer: {
         backgroundColor: 'white',
         paddingVertical: 10,
@@ -98,5 +121,11 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         margin: 22,
         color: 'white',
+    },
+
+    container: {
+        flexDirection: 'row',
+        gap: 150,
+        marginBottom: 20,
     },
 });
