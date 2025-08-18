@@ -1,9 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { addUser } from '../../services/userService'
 
 export default function SignUpGoals({ navigation }: { navigation: any }) {
 
   const startBudgetingButton = () => {
+    addUser();
     navigation.navigate("Home Page");
   };
 

@@ -22,6 +22,7 @@ export default function SignUp({navigation}: {navigation: any}){
         setName(text);
     }
 
+
     return(
         <LinearGradient
         colors = {['rgb(91, 73, 173)', 'rgb(45, 36, 87)']}
