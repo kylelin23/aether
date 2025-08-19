@@ -1,13 +1,19 @@
 import { Picker } from "@react-native-picker/picker";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
+import { useRoute } from '@react-navigation/native';
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function SignUpGoals({ navigation }: { navigation: any }) {
+
+  const route = useRoute<any>();
+
+  const { name, email, password } = route.params;
+
   const [selectedValue, setSelectedValue] = useState("Personal Finance");
 
   const startBudgetingButton = () => {
-    navigation.navigate("All Done");
+    navigation.navigate("All Done", { name, email, password });
   };
 
   return (

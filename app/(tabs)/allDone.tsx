@@ -1,11 +1,23 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { addUser } from '../../services/userService'
+import { useRoute, RouteProp } from "@react-navigation/native"
 
-export default function SignUpGoals({ navigation }: { navigation: any }) {
+type AllDoneRouteParams = {
+  AllDone: {
+    name: string;
+    email: string;
+    password: string;
+  };
+};
+
+export default function AllDone({ navigation }: { navigation: any }) {
+
+  const route = useRoute<RouteProp<AllDoneRouteParams, "AllDone">>();
+  const { name, email, password } = route.params;
 
   const startBudgetingButton = () => {
-    addUser();
+    addUser(name, email, password);
     navigation.navigate("Home Page");
   };
 

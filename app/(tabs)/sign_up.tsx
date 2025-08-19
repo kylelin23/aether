@@ -4,7 +4,7 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-nativ
 
 export default function SignUp({navigation}: {navigation: any}){
     const startBudgetingButton = () => {
-        navigation.navigate('Sign Up 2');
+        navigation.navigate('Sign Up 2', { name, email, password });
     }
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

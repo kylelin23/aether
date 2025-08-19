@@ -1,13 +1,19 @@
 import { Picker } from "@react-native-picker/picker";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
+import { useRoute } from '@react-navigation/native'
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function SignUpCollege({ navigation }: { navigation: any }) {
+
+  const route = useRoute<any>();
+
+  const { name, email, password } = route.params;
+
   const [selectedValue, setSelectedValue] = useState("College");
 
   const startBudgetingButton = () => {
-    navigation.navigate("Sign Up 4");
+    navigation.navigate("Sign Up 4", { name, email, password });
   };
 
   return (

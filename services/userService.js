@@ -11,14 +11,14 @@ export const fetchUsers = async () => {
     return users;
 }
 
-export const addUser = async () => {
+export const addUser = async (name, email, password) => {
     // add user to users table
     let { data: users, error } = await supabase.from("users").insert(
         [
             {
-                name: 'Zoro',
-                username: 'zoro123',
-                password: 'mihawk'
+                name: name,
+                email: email,
+                password: password
         }
     ]);
 

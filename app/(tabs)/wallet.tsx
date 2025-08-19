@@ -1,4 +1,6 @@
 import { View, StyleSheet } from 'react-native';
+import { fetchUsers } from '../../services/userService';
+import { useEffect } from 'react';
 
 
 
