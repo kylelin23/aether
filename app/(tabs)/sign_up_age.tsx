@@ -10,10 +10,10 @@ export default function SignUpAge({ navigation }: { navigation: any }) {
 
   const { name, email, password } = route.params;
 
-  const [selectedValue, setSelectedValue] = useState("18");
+  const [age, setSelectedValue] = useState("18");
 
   const startBudgetingButton = () => {
-    navigation.navigate("Sign Up 3", { name, email, password });
+    navigation.navigate("Sign Up 3", { name, email, password, age });
   };
 
   return (
@@ -25,7 +25,7 @@ export default function SignUpAge({ navigation }: { navigation: any }) {
 
       <View style={{ alignItems: "center" }}>
         <Picker
-          selectedValue={selectedValue}
+          selectedValue={age}
           onValueChange={(itemValue: string) => setSelectedValue(itemValue)}
           style={styles.picker}
           itemStyle={{ color: "white" }}

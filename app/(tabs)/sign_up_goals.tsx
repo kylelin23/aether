@@ -8,12 +8,12 @@ export default function SignUpGoals({ navigation }: { navigation: any }) {
 
   const route = useRoute<any>();
 
-  const { name, email, password } = route.params;
+  const { name, email, password, age, college } = route.params;
 
-  const [selectedValue, setSelectedValue] = useState("Personal Finance");
+  const [goals, setSelectedValue] = useState("Personal Finance");
 
   const startBudgetingButton = () => {
-    navigation.navigate("All Done", { name, email, password });
+    navigation.navigate("All Done", { name, email, password, age, college, goals });
   };
 
   return (
@@ -25,7 +25,7 @@ export default function SignUpGoals({ navigation }: { navigation: any }) {
 
       <View style={{ alignItems: "center" }}>
         <Picker
-          selectedValue={selectedValue}
+          selectedValue={goals}
           onValueChange={(itemValue: string) => setSelectedValue(itemValue)}
           style={styles.picker}
           itemStyle={{ color: "white" }}

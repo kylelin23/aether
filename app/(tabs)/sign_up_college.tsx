@@ -8,12 +8,12 @@ export default function SignUpCollege({ navigation }: { navigation: any }) {
 
   const route = useRoute<any>();
 
-  const { name, email, password } = route.params;
+  const { name, email, password, age } = route.params;
 
-  const [selectedValue, setSelectedValue] = useState("College");
+  const [college, setSelectedValue] = useState("College");
 
   const startBudgetingButton = () => {
-    navigation.navigate("Sign Up 4", { name, email, password });
+    navigation.navigate("Sign Up 4", { name, email, password, age, college });
   };
 
   return (
@@ -25,7 +25,7 @@ export default function SignUpCollege({ navigation }: { navigation: any }) {
 
       <View style={{ alignItems: "center" }}>
         <Picker
-          selectedValue={selectedValue}
+          selectedValue={college}
           onValueChange={(itemValue: string) => setSelectedValue(itemValue)}
           style={styles.picker}
           itemStyle={{ color: "white" }}

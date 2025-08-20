@@ -8,16 +8,19 @@ type AllDoneRouteParams = {
     name: string;
     email: string;
     password: string;
+    age: number;
+    college: string;
+    goals: string;
   };
 };
 
 export default function AllDone({ navigation }: { navigation: any }) {
 
   const route = useRoute<RouteProp<AllDoneRouteParams, "AllDone">>();
-  const { name, email, password } = route.params;
+  const { name, email, password, age, college, goals } = route.params;
 
   const startBudgetingButton = () => {
-    addUser(name, email, password);
+    addUser(name, email, password, age, college, goals);
     navigation.navigate("Home Page");
   };
 
