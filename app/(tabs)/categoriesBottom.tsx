@@ -1,12 +1,25 @@
 import { useState } from 'react';
 import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
+import { addCategory } from '../../services/categoryService';
 
 export default function CategoriesBottomScreen(){
 
     const [visible, setVisible] = useState(false);
 
+    const [categoryName, setCategoryName] = useState('');
+
     const addCategoryButton = () => {
         setVisible(!visible);
+    }
+
+    const handleTextChange = (text: string) => {
+        setCategoryName(text);
+    }
+
+    const enterButton = () => {
+        setVisible(!visible);
+        addCategory(categoryName);
+        setCategoryName('');
     }
 
     return(
@@ -29,9 +42,11 @@ export default function CategoriesBottomScreen(){
                             style = {styles.input}
                             placeholder='Category Name'
                             placeholderTextColor={'white'}
-                        ></TextInput>
+                            value = {categoryName}
+                            onChangeText = {handleTextChange}
+                        />
                         <TouchableOpacity
-                        onPress = {addCategoryButton}
+                        onPress = {enterButton}
                         style = {styles.enterContainer}
                         >
                             <Text style = {styles.enterText}>Enter</Text>
