@@ -8,6 +8,7 @@ import { Session } from '@supabase/supabase-js'
 
 
 export default function HomeScreen({navigation}: {navigation: any}) {
+  const [session, setSession] = useState<Session | null>(null)
 
   const logInButton = () => {
     navigation.navigate('Log In');
