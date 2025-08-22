@@ -3,7 +3,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import 'react-native-url-polyfill/auto'
 import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
-import Auth from '../../components/Auth'
 import { Session } from '@supabase/supabase-js'
 
 
@@ -141,6 +140,7 @@ const styles = StyleSheet.create({
 
     log_in_button: {
         marginBottom: 20,
+        marginTop: 20,
         backgroundColor: 'white',
         alignItems: 'center',
         paddingVertical: 15,
