@@ -21,8 +21,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      {/* <Navigator></Navigator> */}
-      <AuthPage/>
+      <Navigator></Navigator>
+      {/* <AuthPage/> */}
       <StatusBar style="auto" />
     </ThemeProvider>
   );

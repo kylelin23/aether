@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Alert, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import 'react-native-url-polyfill/auto'
 import { useState, useEffect } from 'react'
@@ -10,13 +10,49 @@ import { Session } from '@supabase/supabase-js'
 export default function HomeScreen({navigation}: {navigation: any}) {
   const [session, setSession] = useState<Session | null>(null)
 
-  const logInButton = () => {
-    navigation.navigate('Log In');
-  }
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
 
-  const signUpButton = () => {
-    navigation.navigate('Sign Up');
-  }
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
+
+
+      const [email, setEmail] = useState('')
+      const [password, setPassword] = useState('')
+      const [loading, setLoading] = useState(false)
+
+      async function signInWithEmail() {
+          setLoading(true)
+          const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+          })
+
+          if (error) Alert.alert(error.message)
+          setLoading(false)
+          navigation.navigate('Home Page');
+      }
+
+      async function signUpWithEmail() {
+          setLoading(true)
+          const {
+          data: { session },
+          error,
+          } = await supabase.auth.signUp({
+          email,
+          password,
+          })
+
+          if (error) Alert.alert(error.message)
+          if (!session) Alert.alert('Please check your inbox for email verification!')
+          setLoading(false)
+          navigation.navigate('Home Page');
+      }
 
   return (
     <View style={styles.main_text}>
@@ -30,20 +66,38 @@ export default function HomeScreen({navigation}: {navigation: any}) {
         <Text style = {styles.sub_text}>
           Launch Your Budget, Orbit Your Goals
         </Text>
-        <View style = {styles.button_container}>
-          <TouchableOpacity
-          onPress = {logInButton}
-          style = {styles.log_in_button}
-          >
-            <Text>Log In</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-          onPress = {signUpButton}
-          style = {styles.sign_up_button}
-          >
-            <Text>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
+        <View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    placeholderTextColor='gray'
+                    value={email}
+                    onChangeText={setEmail}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    placeholderTextColor='gray'
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                    autoCapitalize="none"
+                />
+                <TouchableOpacity
+                  onPress = {signInWithEmail}
+                  style = {styles.log_in_button}
+                  >
+                    <Text>Log In</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                  onPress = {signUpWithEmail}
+                  style = {styles.sign_up_button}
+                  >
+                    <Text>Sign Up</Text>
+                  </TouchableOpacity>
+                </View>
 
       </LinearGradient>
     </View>
@@ -73,29 +127,37 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
 
-  log_in_button: {
-    marginBottom: 20,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    paddingVertical: 15,
-    width: 250,
-    borderRadius: 15,
-    shadowOffset: { width: 0, height: 7 },
-    shadowOpacity: 0.3,
-  },
+  input: {
+        borderWidth: 1,
+        borderColor: 'white',
+        borderRadius: 4,
+        padding: 12,
+        marginBottom: 12,
+        color: 'white'
+    },
+    button: {
+        marginVertical: 6,
+    },
 
-  sign_up_button: {
-    backgroundColor: 'white',
-    alignItems: 'center',
-    paddingVertical: 15,
-    width: 250,
-    borderRadius: 15,
-    shadowOffset: { width: 0, height: 7 },
-    shadowOpacity: 0.3,
-  },
+    log_in_button: {
+        marginBottom: 20,
+        backgroundColor: 'white',
+        alignItems: 'center',
+        paddingVertical: 15,
+        width: 250,
+        borderRadius: 15,
+        shadowOffset: { width: 0, height: 7 },
+        shadowOpacity: 0.3,
+    },
 
-  button_container: {
-
-  },
+    sign_up_button: {
+        backgroundColor: 'white',
+        alignItems: 'center',
+        paddingVertical: 15,
+        width: 250,
+        borderRadius: 15,
+        shadowOffset: { width: 0, height: 7 },
+        shadowOpacity: 0.3,
+    },
 
 });
