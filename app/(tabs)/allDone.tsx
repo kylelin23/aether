@@ -2,6 +2,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { addUser } from '../../services/userService'
 import { useRoute, RouteProp } from "@react-navigation/native"
+import 'react-native-url-polyfill/auto'
+import { supabase } from '../../lib/supabase'
+import { Session } from '@supabase/supabase-js'
+import { useState, useEffect } from 'react'
 
 type AllDoneRouteParams = {
   AllDone: {
@@ -15,6 +19,7 @@ type AllDoneRouteParams = {
 };
 
 export default function AllDone({ navigation }: { navigation: any }) {
+  const [session, setSession] = useState<Session | null>(null)
 
   const route = useRoute<RouteProp<AllDoneRouteParams, "AllDone">>();
   const { name, email, password, age, college, goals } = route.params;

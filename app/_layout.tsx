@@ -2,6 +2,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
+import AuthPage from '../app/(tabs)/authPage'
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import Navigator from './routes/startingStack';
@@ -20,7 +21,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Navigator></Navigator>
+      {/* <Navigator></Navigator> */}
+      <AuthPage/>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
