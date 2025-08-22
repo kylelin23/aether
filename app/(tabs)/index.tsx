@@ -27,30 +27,33 @@ export default function HomeScreen({navigation}: {navigation: any}) {
 
       async function signInWithEmail() {
           setLoading(true)
-          const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
           })
 
-          if (error) Alert.alert(error.message)
+          if (error) {
+            Alert.alert(error.message)
+          }
+          else if (data.session){
+            navigation.navigate('Home Page');
+          }
           setLoading(false)
-          navigation.navigate('Home Page');
       }
 
       async function signUpWithEmail() {
           setLoading(true)
-          const {
-          data: { session },
-          error,
-          } = await supabase.auth.signUp({
+          const {data, error} = await supabase.auth.signUp({
           email,
           password,
           })
 
-          if (error) Alert.alert(error.message)
+          if (error){ Alert.alert(error.message)}
+          else if (data.session){
+            navigation.navigate("Home Page");
+          }
           if (!session) Alert.alert('Please check your inbox for email verification!')
           setLoading(false)
-          navigation.navigate('Home Page');
       }
 
   return (
