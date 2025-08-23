@@ -37,6 +37,8 @@ export default function HomeScreen({navigation}: {navigation: any}) {
           }
           else if (data.session){
             navigation.navigate('Home Page');
+            setEmail("");
+            setPassword("");
           }
           setLoading(false)
       }
@@ -44,15 +46,16 @@ export default function HomeScreen({navigation}: {navigation: any}) {
       async function signUpWithEmail() {
           setLoading(true)
           const {data, error} = await supabase.auth.signUp({
-          email,
-          password,
+            email,
+            password,
           })
 
           if (error){ Alert.alert(error.message)}
           else if (data.session){
-            navigation.navigate("Home Page");
+            navigation.navigate("Sign Up 2", {email});
+            setEmail("");
+            setPassword("");
           }
-          if (!session) Alert.alert('Please check your inbox for email verification!')
           setLoading(false)
       }
 

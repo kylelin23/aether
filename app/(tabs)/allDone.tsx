@@ -5,9 +5,7 @@ import { useRoute, RouteProp } from "@react-navigation/native"
 
 type AllDoneRouteParams = {
   AllDone: {
-    name: string;
     email: string;
-    password: string;
     age: number;
     college: string;
     goals: string;
@@ -17,10 +15,10 @@ type AllDoneRouteParams = {
 export default function AllDone({ navigation }: { navigation: any }) {
 
   const route = useRoute<RouteProp<AllDoneRouteParams, "AllDone">>();
-  const { name, email, password, age, college, goals } = route.params;
+  const { email, age, college, goals } = route.params;
 
   const startBudgetingButton = () => {
-    addUser(name, email, password, age, college, goals);
+    addUser(email, age, college, goals);
     navigation.navigate("Home Page");
   };
 

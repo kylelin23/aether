@@ -8,12 +8,12 @@ export default function SignUpCollege({ navigation }: { navigation: any }) {
 
   const route = useRoute<any>();
 
-  const { name, email, password, age } = route.params;
+  const { email, age } = route.params;
 
   const [college, setSelectedValue] = useState("College");
 
   const startBudgetingButton = () => {
-    navigation.navigate("Sign Up 4", { name, email, password, age, college });
+    navigation.navigate("Sign Up 4", { email, age, college });
   };
 
   return (
