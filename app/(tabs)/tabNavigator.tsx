@@ -16,6 +16,7 @@ export default function TabNavigator() {
         },
         tabBarActiveTintColor: 'rgb(91, 73, 173)',
         tabBarInactiveTintColor: 'white',
+        headerShown: false,
     }}
     >
       <Tab.Screen name="Wallet" component={WalletScreen} />

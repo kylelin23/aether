@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Dimensions, TouchableOpacity, Text, TextInput, View, StyleSheet, Modal } from 'react-native';
-import { subscribeForKeyboardEvents } from 'react-native-reanimated/lib/typescript/core';
 
 export default function OverviewBottomScreen(){
 
@@ -13,22 +12,6 @@ export default function OverviewBottomScreen(){
 
     return(
         <View style = {styles.view}>
-            <View style = {styles.container}>
-                <Text style = {styles.text}>FOOD</Text>
-                <Text style = {styles.text}>$100</Text>
-            </View>
-
-            <View style = {styles.container}>
-                <Text style = {styles.text}>RENT</Text>
-                <Text style = {styles.text}>$500</Text>
-            </View>
-
-            <View style = {styles.container}>
-                <Text style = {styles.text}>TRANSPORT</Text>
-                <Text style = {styles.text}>$50</Text>
-            </View>
-
-
             <TouchableOpacity
                 style = {styles.button}
                 onPress = {editBudgetButton}
@@ -83,6 +66,7 @@ const styles = StyleSheet.create({
     modalContainer: {
         marginTop: screenHeight * .625,
         height: 250,
+        justifyContent: 'center', 
         backgroundColor: 'rgb(91, 73, 173)',
         borderRadius: 20,
         alignItems: 'center',
@@ -94,11 +78,11 @@ const styles = StyleSheet.create({
 
     goalText: {
         color: 'white',
-        fontSize: 50,
+        fontSize: 30,
     },
 
     enterText: {
-        fontSize : 30,
+        fontSize : 20,
     },
 
     text: {

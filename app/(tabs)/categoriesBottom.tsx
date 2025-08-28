@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
 
     enterText: {
-        fontSize : 30,
+        fontSize : 20,
     },
 
     enterContainer: {
@@ -115,5 +115,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(91, 73, 173)',
         borderRadius: 20,
         alignItems: 'center',
+        justifyContent: 'center', 
     },
 });

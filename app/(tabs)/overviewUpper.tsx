@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function OverviewBottomScreen(){
+export default function OverviewUpperScreen(){
 
     return(
         <View style = {styles.view}>
@@ -14,7 +14,9 @@ export default function OverviewBottomScreen(){
 const styles = StyleSheet.create({
     view: {
         alignItems: 'center',
-        padding: 15,
+        justifyContent: 'center',
+        height: '100%',
+        gap: 10,
     },
 
     text: {
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
 
     title: {
         color: 'white',
-        fontSize: 50,
-        marginBottom: 50,
+        fontSize: 30,
+        fontWeight: 'bold',
     }
 });

@@ -54,21 +54,25 @@ export default function StatsScreen() {
 }
 
 const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     width: screenWidth,
     justifyContent: "space-around",
+    alignItems: 'flex-end',
+    height: 80,
+    backgroundColor: 'black'
   },
 
   topHalf: {
-    height: "50%",
+    height: (screenHeight - 80)/2,
     borderRadius: 25,
   },
 
   bottomHalf: {
-    height: "50%",
-    backgroundColor: "black",
+    height: (screenHeight - 80)/2,
   },
 });

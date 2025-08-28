@@ -7,7 +7,7 @@ export default function SettingsScreen({navigation} : {navigation: any}){
     }
 
     return(
-        <View>
+        <View style = {styles.container}>
             <TouchableOpacity onPress={logout}>
                 <Text style = {styles.text}>Log Out</Text>
             </TouchableOpacity>
@@ -16,6 +16,12 @@ export default function SettingsScreen({navigation} : {navigation: any}){
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
     text: {
         fontSize: 30
     }
