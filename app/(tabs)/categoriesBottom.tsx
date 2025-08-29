@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
+import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, Alert, TextInput } from 'react-native';
 import { addCategory } from '../../services/categoryService';
 
 export default function CategoriesBottomScreen(){
@@ -7,6 +7,7 @@ export default function CategoriesBottomScreen(){
     const [visible, setVisible] = useState(false);
 
     const [categoryName, setCategoryName] = useState('');
+    const [totalBudget, setTotalBudget] = useState('');
 
     const addCategoryButton = () => {
         setVisible(!visible);
@@ -16,10 +17,21 @@ export default function CategoriesBottomScreen(){
         setCategoryName(text);
     }
 
+    const handleTextChange2 = (text: string) => {
+        setTotalBudget(text);
+    }
+
     const enterButton = () => {
-        setVisible(!visible);
-        addCategory(categoryName);
         setCategoryName('');
+        setTotalBudget('');
+        setVisible(!visible);
+        const parsedText = parseInt(totalBudget, 10);
+        if (totalBudget !== '' && isNaN(parsedText)) {
+            Alert.alert("Invalid Input", "Please enter a valid number for the budget.");
+            return;
+        }
+        addCategory(categoryName, parsedText);
+
     }
 
     return(
@@ -44,6 +56,14 @@ export default function CategoriesBottomScreen(){
                             placeholderTextColor={'white'}
                             value = {categoryName}
                             onChangeText = {handleTextChange}
+                        />
+                        <TextInput
+                            style = {styles.input}
+                            placeholder='Total Budget in Dollars (Ex: 100)'
+                            placeholderTextColor={'white'}
+                            keyboardType="numeric"
+                            value = {totalBudget}
+                            onChangeText = {handleTextChange2}
                         />
                         <TouchableOpacity
                         onPress = {enterButton}
@@ -105,16 +125,16 @@ const styles = StyleSheet.create({
         height: 50,
         borderWidth: 1,
         borderColor: 'white',
-        margin: 22,
         color: 'white'
     },
 
     modalContainer: {
-        marginTop: screenHeight * .625,
+        marginTop: screenHeight - 350,
         height: 250,
         backgroundColor: 'rgb(91, 73, 173)',
         borderRadius: 20,
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'center',
+        gap: 20,
     },
 });
