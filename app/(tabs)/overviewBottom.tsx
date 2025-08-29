@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     },
 
     modalContainer: {
-        marginTop: screenHeight * .625,
+        marginTop: screenHeight - 350,
         height: 250,
-        justifyContent: 'center', 
+        justifyContent: 'center',
         backgroundColor: 'rgb(91, 73, 173)',
         borderRadius: 20,
         alignItems: 'center',

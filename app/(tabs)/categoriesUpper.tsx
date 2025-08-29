@@ -1,16 +1,48 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
+import { fetchCategories } from '../../services/categoryService'
 
 export default function CategoriesBottomScreen(){
 
     const [visible, setVisible] = useState(false);
 
+    type Category = {
+        name: string;
+        totalBudget: number;
+    };
+
+    const [categories, setCategories] = useState<Category[]>([]);
+
     const addTransactionButton = () => {
         setVisible(!visible);
     }
 
+    useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await fetchCategories();
+        setCategories(data || []); // Store fetched data into local variables
+      } catch (err) {
+        console.error("Failed to fetch categories", err);
+      }
+    };
+
+    loadCategories();
+
+    }, []);
+
     return(
         <View style = {styles.view}>
+
+            <View style = {styles.container}>
+                {categories.map((category, index) => (
+                    <View style = {styles.categoryContainer} key = {index}>
+                        <Text style = {styles.categoryText}>{category.name}</Text>
+                        <Text style = {styles.categoryText}>{category.totalBudget}</Text>
+                    </View>
+                ))}
+            </View>
+
             <TouchableOpacity
                 style = {styles.button}
                 onPress = {addTransactionButton}
@@ -48,7 +80,9 @@ export default function CategoriesBottomScreen(){
     )
 }
 
-const screenHeight = Dimensions.get('window').height
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
+
 
 const styles = StyleSheet.create({
     view: {
@@ -100,11 +134,28 @@ const styles = StyleSheet.create({
     },
 
     modalContainer: {
-        marginTop: screenHeight * .625,
+        marginTop: screenHeight - 350,
         height: 250,
         backgroundColor: 'rgb(91, 73, 173)',
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    categoryText: {
+        color: 'white',
+        fontSize: 20,
+    },
+
+    categoryContainer: {
+        flexDirection: 'row',
+        width: screenWidth,
+        paddingHorizontal: 20,
+        justifyContent: 'space-between',
+    },
+
+    container: {
+        gap: 10,
+        marginBottom: 20,
+    }
 });
