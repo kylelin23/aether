@@ -9,12 +9,12 @@ export default function CategoriesBottomScreen(){
     const [categoryName, setCategoryName] = useState('');
     const [totalBudget, setTotalBudget] = useState('');
 
-    type Category = {
-        name: string;
-        totalBudget: number;
-    };
+    // type Category = {
+    //     name: string;
+    //     totalBudget: number;
+    // };
 
-    const [categories, setCategories] = useState<Category[]>([]);
+    // const [categories, setCategories] = useState<Category[]>([]);
 
     const addCategoryButton = () => {
         setVisible(!visible);
@@ -33,12 +33,16 @@ export default function CategoriesBottomScreen(){
         setTotalBudget('');
         setVisible(!visible);
         const parsedText = parseInt(totalBudget, 10);
-        if (totalBudget !== '' && isNaN(parsedText)) {
+        if (!categoryName || categoryName.trim() === "") {
+            Alert.alert("Invalid Input", "Please write a category name. ");
+            return
+        }
+        if (totalBudget !== null && isNaN(parsedText)) {
             Alert.alert("Invalid Input", "Please enter a valid number for the budget.");
             return;
         }
         addCategory(categoryName, parsedText);
-        setCategories(prev => [...prev, { name: categoryName, totalBudget: parsedText }]);
+        // setCategories(prev => [...prev, { name: categoryName, totalBudget: parsedText }]);
     }
 
     return(
