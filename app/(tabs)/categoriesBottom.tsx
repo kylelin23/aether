@@ -9,6 +9,13 @@ export default function CategoriesBottomScreen(){
     const [categoryName, setCategoryName] = useState('');
     const [totalBudget, setTotalBudget] = useState('');
 
+    type Category = {
+        name: string;
+        totalBudget: number;
+    };
+
+    const [categories, setCategories] = useState<Category[]>([]);
+
     const addCategoryButton = () => {
         setVisible(!visible);
     }
@@ -31,7 +38,7 @@ export default function CategoriesBottomScreen(){
             return;
         }
         addCategory(categoryName, parsedText);
-
+        setCategories(prev => [...prev, { name: categoryName, totalBudget: parsedText }]);
     }
 
     return(
