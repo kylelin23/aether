@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
 import { fetchCategories } from '../../services/categoryService'
 
-export default function CategoriesBottomScreen(){
+export default function CategoriesUpper(){
 
     const [visible, setVisible] = useState(false);
 
@@ -36,19 +37,27 @@ export default function CategoriesBottomScreen(){
 
             <View style = {styles.container}>
                 {categories.map((category, index) => (
-                    <View style = {styles.categoryContainer} key = {index}>
-                        <Text style = {styles.categoryText}>{category.name}</Text>
-                        <Text style = {styles.categoryText}>{category.totalBudget}</Text>
-                    </View>
+                    <LinearGradient
+                                colors = {['rgb(91, 73, 173)', 'rgb(45, 36, 87)']}
+                                style = {styles.section}
+                                key = {index}
+                            >
+                        <View style = {styles.categoryContainer}>
+                            <Text style = {styles.categoryText}>{category.name}</Text>
+                            <Text style = {styles.categoryText}>{category.totalBudget}</Text>
+                        </View>
+                        <View style = {{alignItems: 'center'}}>
+                            <TouchableOpacity
+                                style = {styles.button}
+                                onPress = {addTransactionButton}
+                            >
+                                <Text style = {styles.buttonText}>Add Transaction</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </LinearGradient>
                 ))}
             </View>
 
-            <TouchableOpacity
-                style = {styles.button}
-                onPress = {addTransactionButton}
-            >
-                <Text style = {styles.buttonText}>Add Transaction</Text>
-            </TouchableOpacity>
             <Modal
                 visible = {visible}
                 transparent = {true}
@@ -91,7 +100,6 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: 'white',
         borderRadius: 15,
         alignItems: 'center',
         paddingVertical: 10,
@@ -100,6 +108,7 @@ const styles = StyleSheet.create({
 
     buttonText: {
         fontSize: 20,
+        color: 'white',
     },
 
 
@@ -157,5 +166,11 @@ const styles = StyleSheet.create({
     container: {
         gap: 10,
         marginBottom: 20,
+    },
+
+    section: {
+        borderRadius: 15,
+        padding: 5,
+        margin: 5,
     }
 });

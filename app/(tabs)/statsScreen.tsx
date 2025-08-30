@@ -1,5 +1,4 @@
-import { View, StyleSheet, Dimensions, Button } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, ScrollView, StyleSheet, Dimensions, Button } from "react-native";
 import OverviewBottomScreen from "./overviewBottom";
 import CategoriesBottomScreen from "./categoriesBottom";
 import OverviewUpperScreen from "./overviewUpper";
@@ -16,11 +15,8 @@ export default function StatsScreen() {
   );
 
   return (
-    <View style = {{flex: 1, backgroundColor: 'black'}}>
-      <LinearGradient
-        colors = {['rgb(91, 73, 173)', 'rgb(45, 36, 87)']}
-        style = {styles.topHalf}
-      >
+    <ScrollView style = {{flex: 1, backgroundColor: 'black'}}>
+      <View style = {styles.topHalf}>
         <View style={styles.container}>
           <Button
               title="Overview"
@@ -42,14 +38,14 @@ export default function StatsScreen() {
         <View>
           {selectedTab2 === "overviewUpper" ? (<OverviewUpperScreen />) : (<CategoriesUpperScreen />)}
         </View>
-      </LinearGradient>
+      </View>
 
       <View style={styles.bottomHalf}>
         <View>
           {selectedTab === "overviewBottom" ? (<OverviewBottomScreen />) : (<CategoriesBottomScreen />)}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -68,11 +64,10 @@ const styles = StyleSheet.create({
   },
 
   topHalf: {
-    height: (screenHeight - 80)/2,
     borderRadius: 25,
   },
 
   bottomHalf: {
-    height: (screenHeight - 80)/2,
+    // height: (screenHeight - 80)/2,
   },
 });

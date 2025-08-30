@@ -9,13 +9,6 @@ export default function CategoriesBottomScreen(){
     const [categoryName, setCategoryName] = useState('');
     const [totalBudget, setTotalBudget] = useState('');
 
-    // type Category = {
-    //     name: string;
-    //     totalBudget: number;
-    // };
-
-    // const [categories, setCategories] = useState<Category[]>([]);
-
     const addCategoryButton = () => {
         setVisible(!visible);
     }
@@ -94,7 +87,7 @@ const screenHeight = Dimensions.get('window').height
 const styles = StyleSheet.create({
     view: {
         alignItems: 'center',
-        padding: 15,
+        padding: 30,
     },
 
     button: {
