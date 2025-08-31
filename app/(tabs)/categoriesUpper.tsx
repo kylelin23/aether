@@ -44,7 +44,7 @@ export default function CategoriesUpper(){
                             >
                         <View style = {styles.categoryContainer}>
                             <Text style = {styles.categoryText}>{category.name}</Text>
-                            <Text style = {styles.categoryText}>{category.totalBudget}</Text>
+                            <Text style = {styles.categoryText}>${category.totalBudget}</Text>
                         </View>
                         <View style = {{alignItems: 'center'}}>
                             <TouchableOpacity
@@ -52,6 +52,11 @@ export default function CategoriesUpper(){
                                 onPress = {addTransactionButton}
                             >
                                 <Text style = {styles.buttonText}>Add Transaction</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style = {styles.button}
+                            >
+                                <Text style = {styles.buttonText}>Remove Category</Text>
                             </TouchableOpacity>
                         </View>
                     </LinearGradient>

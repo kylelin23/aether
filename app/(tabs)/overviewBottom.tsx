@@ -1,5 +1,8 @@
-import { useState } from 'react';
 import { Dimensions, TouchableOpacity, Text, TextInput, View, StyleSheet, Modal } from 'react-native';
+import { useEffect, useState } from 'react'
+import { fetchCategories } from '../../services/categoryService'
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 export default function OverviewBottomScreen(){
 
@@ -9,9 +12,36 @@ export default function OverviewBottomScreen(){
         setVisible(!visible);
     }
 
+        type Category = {
+            name: string;
+            totalBudget: number;
+        };
+
+        const [categories, setCategories] = useState<Category[]>([]);
+
+        useEffect(() => {
+            const loadCategories = async () => {
+              try {
+                const data = await fetchCategories();
+                setCategories(data || []); // Store fetched data into local variables
+              } catch (err) {
+                console.error("Failed to fetch categories", err);
+              }
+            };
+
+            loadCategories();
+
+            }, []);
+
 
     return(
         <View style = {styles.view}>
+                {categories.map((category, index) => (
+                    <View style = {styles.categoryContainer} key = {index}>
+                            <Text style = {styles.categoryText}>{category.name}</Text>
+                            <Text style = {styles.categoryText}>${category.totalBudget}</Text>
+                        </View>
+                ))}
             <TouchableOpacity
                 style = {styles.button}
                 onPress = {editBudgetButton}
@@ -43,7 +73,8 @@ export default function OverviewBottomScreen(){
     )
 }
 
-const screenHeight = Dimensions.get('window').height
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     view: {
@@ -111,5 +142,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 150,
         marginBottom: 20,
+    },
+
+    categoryText: {
+        color: 'white',
+        fontSize: 20,
+    },
+
+    categoryContainer: {
+        flexDirection: 'row',
+        width: screenWidth,
+        paddingHorizontal: 20,
+        justifyContent: 'space-between',
     },
 });
