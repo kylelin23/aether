@@ -18,14 +18,6 @@ export const fetchCategories = async() => {
 
 export const addCategory = async(name, totalBudget) => {
 
-    // if (!name || name.trim() === "") {
-    //     throw new Error("Category name cannot be empty.");
-    // }
-
-    // if (totalBudget === null || isNaN(totalBudget)) {
-    //     throw new Error("Total budget must be a number.");
-    // }
-
     const { data: { user }, error: userError } = await supabase.auth.getUser();
 
     if (userError){
@@ -48,3 +40,22 @@ export const addCategory = async(name, totalBudget) => {
     }
     return categories;
 }
+
+export const removeCategory = async (name) => {
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    if (userError) {
+        throw new Error("Failed to get current user.");
+    }
+
+    let { error } = await supabase
+        .from("categories")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("name", name);
+
+    if (error) {
+        throw new Error("Failed to remove category.");
+    }
+
+    return true;
+};

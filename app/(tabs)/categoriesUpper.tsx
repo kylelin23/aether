@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
-import { fetchCategories } from '../../services/categoryService'
+import { fetchCategories, removeCategory } from '../../services/categoryService'
 
 export default function CategoriesUpper(){
 
     const [visible, setVisible] = useState(false);
+    const [name, setName] = useState('');
 
     type Category = {
         name: string;
@@ -16,6 +17,11 @@ export default function CategoriesUpper(){
 
     const addTransactionButton = () => {
         setVisible(!visible);
+    }
+
+    const removeCategoryButton = (name: string) => {
+        setCategories((prev) => prev.filter((c) => c.name !== name));
+        removeCategory(name);
     }
 
     useEffect(() => {
@@ -55,6 +61,7 @@ export default function CategoriesUpper(){
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style = {styles.button}
+                                onPress = {() => {removeCategoryButton(category.name)}}
                             >
                                 <Text style = {styles.buttonText}>Remove Category</Text>
                             </TouchableOpacity>

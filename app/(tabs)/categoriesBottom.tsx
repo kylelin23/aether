@@ -35,6 +35,7 @@ export default function CategoriesBottomScreen(){
             return;
         }
         addCategory(categoryName, parsedText);
+        Alert.alert("Category Added!", "Reload the page to view your new category. ")
         // setCategories(prev => [...prev, { name: categoryName, totalBudget: parsedText }]);
     }
 
