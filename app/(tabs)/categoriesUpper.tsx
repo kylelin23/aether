@@ -1,27 +1,51 @@
 import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
-import { fetchCategories, removeCategory } from '../../services/categoryService'
+import { fetchCategories, removeCategory } from '../../services/categoryService';
+import { addTransaction } from '../../services/transactionService';
+
 
 export default function CategoriesUpper(){
 
     const [visible, setVisible] = useState(false);
-    const [name, setName] = useState('');
+    const [transactionName, setTransactionName] = useState('');
+    const [amountSpent, setAmountSpent] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+
+
+
 
     type Category = {
+        id: number;
         name: string;
         totalBudget: number;
     };
 
     const [categories, setCategories] = useState<Category[]>([]);
 
-    const addTransactionButton = () => {
+    const addTransactionButton = (categoryId: number) => {
+        setSelectedCategory(categoryId);
         setVisible(!visible);
     }
 
     const removeCategoryButton = (name: string) => {
         setCategories((prev) => prev.filter((c) => c.name !== name));
         removeCategory(name);
+    }
+
+    const enterButton = async () => {
+        if (!selectedCategory) return;
+        await addTransaction(selectedCategory, transactionName, Number(amountSpent));
+        setCategories(prev =>
+                prev.map(c =>
+                    c.id === selectedCategory
+                        ? { ...c, totalBudget: c.totalBudget - Number(amountSpent) }
+                        : c
+                )
+            );
+        setTransactionName('');
+        setAmountSpent('');
+        setVisible(false);
     }
 
     useEffect(() => {
@@ -55,7 +79,7 @@ export default function CategoriesUpper(){
                         <View style = {{alignItems: 'center'}}>
                             <TouchableOpacity
                                 style = {styles.button}
-                                onPress = {addTransactionButton}
+                                onPress = {() => addTransactionButton(category.id)}
                             >
                                 <Text style = {styles.buttonText}>Add Transaction</Text>
                             </TouchableOpacity>
@@ -82,14 +106,19 @@ export default function CategoriesUpper(){
                             style = {styles.input}
                             placeholder='Transaction'
                             placeholderTextColor={'white'}
+                            value = {transactionName}
+                            onChangeText = {setTransactionName}
                         ></TextInput>
                         <TextInput
                             style = {styles.input}
                             placeholder='Amount Spent'
                             placeholderTextColor={'white'}
+                            value = {amountSpent}
+                            onChangeText = {setAmountSpent}
+                            keyboardType="numeric"
                         ></TextInput>
                         <TouchableOpacity
-                        onPress = {addTransactionButton}
+                        onPress = {enterButton}
                         style = {styles.enterContainer}
                         >
                             <Text style = {styles.enterText}>Enter</Text>

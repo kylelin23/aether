@@ -7,7 +7,7 @@ export const fetchCategories = async() => {
         throw new Error("Failed to get current user.");
     }
 
-    let { data: categories, error } = await supabase.from("categories").select("name, totalBudget").eq("user_id", user.id);
+    let { data: categories, error } = await supabase.from("categories").select("id, name, totalBudget").eq("user_id", user.id);
 
     if(error){
         throw new Error();
@@ -16,20 +16,14 @@ export const fetchCategories = async() => {
     return categories;
 }
 
-export const addCategory = async(name, totalBudget) => {
-
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
-
-    if (userError){
-        throw new Error();
-    }
+export const addCategory = async(category_id, name, amountSpent) => {
 
     let { data: categories, error } = await supabase.from("categories").insert(
         [
             {
-                user_id: user.id,
+                category_id: category_id,
                 name: name,
-                totalBudget: totalBudget
+                amountSpent: amountSpent
             }
         ]
 
