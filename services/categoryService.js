@@ -16,14 +16,20 @@ export const fetchCategories = async() => {
     return categories;
 }
 
-export const addCategory = async(category_id, name, amountSpent) => {
+export const addCategory = async(name, totalBudget) => {
+
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError){
+        throw new Error();
+    }
 
     let { data: categories, error } = await supabase.from("categories").insert(
         [
             {
-                category_id: category_id,
+                user_id: user.id,
                 name: name,
-                amountSpent: amountSpent
+                totalBudget: totalBudget
             }
         ]
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
+import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput, Alert } from 'react-native';
 import { fetchCategories, removeCategory } from '../../services/categoryService';
 import { addTransaction, fetchTransactions } from '../../services/transactionService';
 
@@ -42,11 +42,19 @@ export default function CategoriesUpper(){
     }
 
     const enterButton = async () => {
-        if (!selectedCategory) return;
-        await addTransaction(selectedCategory, transactionName, Number(amountSpent));
         setTransactionName('');
         setAmountSpent('');
         setVisible(false);
+        if (!transactionName || transactionName.trim() === "") {
+            Alert.alert("Invalid Input", "Please write a transaction name. ");
+            return
+        }
+        if (amountSpent !== null && isNaN(Number(amountSpent))) {
+            Alert.alert("Invalid Input", "Please enter a valid number for the amount spent.");
+            return;
+        }
+        await addTransaction(selectedCategory, transactionName, Number(amountSpent));
+
     }
 
 
@@ -96,7 +104,7 @@ export default function CategoriesUpper(){
                             <Text style = {styles.categoryText}>${category.totalBudget}</Text>
                         </View>
                         {transactions.map((transaction, index) => (
-                            <View style = {styles.categoryContainer}>
+                            <View style = {styles.categoryContainer} key = {index}>
                                 <Text style = {styles.transactionText}>{transaction.name}</Text>
                                 <Text style = {styles.transactionText}>${transaction.amountSpent}</Text>
                             </View>
