@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Dimensions, Text, Modal, TouchableOpacity, View, StyleSheet, TextInput } from 'react-native';
 import { fetchCategories, removeCategory } from '../../services/categoryService';
-import { addTransaction } from '../../services/transactionService';
+import { addTransaction, fetchTransactions } from '../../services/transactionService';
 
 
 export default function CategoriesUpper(){
@@ -21,7 +21,15 @@ export default function CategoriesUpper(){
         totalBudget: number;
     };
 
+    type Transaction = {
+        id: number;
+        name: string;
+        amountSpent: number;
+    };
+
     const [categories, setCategories] = useState<Category[]>([]);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+
 
     const addTransactionButton = (categoryId: number) => {
         setSelectedCategory(categoryId);
@@ -36,18 +44,13 @@ export default function CategoriesUpper(){
     const enterButton = async () => {
         if (!selectedCategory) return;
         await addTransaction(selectedCategory, transactionName, Number(amountSpent));
-        setCategories(prev =>
-                prev.map(c =>
-                    c.id === selectedCategory
-                        ? { ...c, totalBudget: c.totalBudget - Number(amountSpent) }
-                        : c
-                )
-            );
         setTransactionName('');
         setAmountSpent('');
         setVisible(false);
     }
 
+
+    // USE EFFECT FOR CATEGORIES
     useEffect(() => {
     const loadCategories = async () => {
       try {
@@ -59,6 +62,22 @@ export default function CategoriesUpper(){
     };
 
     loadCategories();
+
+    }, []);
+
+
+    // USE EFFECT FOR TRANSACTIONS
+    useEffect(() => {
+    const loadTransactions = async () => {
+      try {
+        const data = await fetchTransactions();
+        setTransactions(data || []); // Store fetched data into local variables
+      } catch (err) {
+        console.error("Failed to fetch transactions", err);
+      }
+    };
+
+    loadTransactions();
 
     }, []);
 
@@ -76,6 +95,12 @@ export default function CategoriesUpper(){
                             <Text style = {styles.categoryText}>{category.name}</Text>
                             <Text style = {styles.categoryText}>${category.totalBudget}</Text>
                         </View>
+                        {transactions.map((transaction, index) => (
+                            <View style = {styles.categoryContainer}>
+                                <Text style = {styles.transactionText}>{transaction.name}</Text>
+                                <Text style = {styles.transactionText}>${transaction.amountSpent}</Text>
+                            </View>
+                        ))}
                         <View style = {{alignItems: 'center'}}>
                             <TouchableOpacity
                                 style = {styles.button}
@@ -193,6 +218,12 @@ const styles = StyleSheet.create({
     },
 
     categoryText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+
+    transactionText: {
         color: 'white',
         fontSize: 20,
     },
