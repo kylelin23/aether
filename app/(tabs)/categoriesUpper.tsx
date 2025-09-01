@@ -23,6 +23,7 @@ export default function CategoriesUpper(){
 
     type Transaction = {
         id: number;
+        category_id: number;
         name: string;
         amountSpent: number;
     };
@@ -54,6 +55,7 @@ export default function CategoriesUpper(){
             return;
         }
         await addTransaction(selectedCategory, transactionName, Number(amountSpent));
+        Alert.alert("Transaction Added!", "Reload the page to view your new transaction. ")
 
     }
 
@@ -103,7 +105,9 @@ export default function CategoriesUpper(){
                             <Text style = {styles.categoryText}>{category.name}</Text>
                             <Text style = {styles.categoryText}>${category.totalBudget}</Text>
                         </View>
-                        {transactions.map((transaction, index) => (
+                        {transactions
+                        .filter(t => t.category_id == category.id)
+                        .map((transaction, index) => (
                             <View style = {styles.categoryContainer} key = {index}>
                                 <Text style = {styles.transactionText}>{transaction.name}</Text>
                                 <Text style = {styles.transactionText}>${transaction.amountSpent}</Text>

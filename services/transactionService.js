@@ -1,7 +1,7 @@
 import { supabase } from "../lib/supabase";
 
 export const fetchTransactions = async () => {
-    let { data: transactions, error } = await supabase.from("transactions").select("id, name, amountSpent");
+    let { data: transactions, error } = await supabase.from("transactions").select("*");
 
     if(error){
         throw new Error();
