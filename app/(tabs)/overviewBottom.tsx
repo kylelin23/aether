@@ -7,9 +7,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function OverviewBottomScreen(){
 
     const [visible, setVisible] = useState(false);
+    const [budget, setBudget] = useState('');
+
+    const handleTextChange = (text: string) => {
+        setBudget(text)
+    }
 
     const editBudgetButton = () => {
         setVisible(!visible);
+        if(visible == false){
+            setBudget('');
+        }
     }
 
         type Category = {
@@ -56,9 +64,12 @@ export default function OverviewBottomScreen(){
             >
                 <View style = {styles.overlay}>
                     <View style = {styles.modalContainer}>
-                        <Text style = {styles.goalText}>Goal</Text>
                         <TextInput
+                            placeholder='Goal'
+                            placeholderTextColor={'white'}
+                            value = {budget}
                             style = {styles.input}
+                            onChangeText = {handleTextChange}
                         ></TextInput>
                         <TouchableOpacity
                         onPress = {editBudgetButton}
@@ -96,8 +107,8 @@ const styles = StyleSheet.create({
     },
 
     modalContainer: {
-        marginTop: screenHeight - 350,
-        height: 250,
+        marginTop: screenHeight - 300,
+        height: 200,
         justifyContent: 'center',
         backgroundColor: 'rgb(91, 73, 173)',
         borderRadius: 20,
@@ -132,7 +143,7 @@ const styles = StyleSheet.create({
     input: {
         padding: 5,
         width: 300,
-        height: 75,
+        height: 50,
         borderWidth: 1,
         borderColor: 'white',
         margin: 22,

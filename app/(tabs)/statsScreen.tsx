@@ -20,7 +20,7 @@ export default function StatsScreen() {
         <View style={styles.container}>
           <Button
               title="Overview"
-              color = 'white'
+              color = {selectedTab == 'overviewBottom' ? 'white' : "gray"}
               onPress={() => {
                   setSelectedTab("overviewBottom")
                   setSelectedTab2("overviewUpper")
@@ -28,7 +28,7 @@ export default function StatsScreen() {
               } />
           <Button
             title="Categories"
-            color="white"
+            color={selectedTab == 'categoriesBottom' ? "white": 'gray'}
             onPress={() => {
               setSelectedTab("categoriesBottom");
               setSelectedTab2("categoriesUpper");
