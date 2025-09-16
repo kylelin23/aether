@@ -30,7 +30,7 @@ When college students and young adults enter the adult world, they face many cha
 2. **Install Dependencies**
    ```bash
    npm install
-   ## May need to use this if npm install doesn't work: npm install --legacy-peer-deps
+   # May need to use this if npm install doesn't work: npm install --legacy-peer-deps
 
 3. **Start the Development Server**
    ```bash
